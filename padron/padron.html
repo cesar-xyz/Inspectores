@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Padron</title>
+</head>
+<body>
+<h1>Padron</h1>
+<form>
+    <label for="dependencia">Dependencia:</label>
+    <select id="dependencia" name="dependencia">
+        <option value="">--Seleccione--</option>
+        <!-- aquí se podrían incluir opciones dinámicamente desde Django -->
+    </select><br><br>
+
+    <label for="direccion">Direccion:</label>
+    <select id="direccion" name="direccion">
+        <option value="">--Seleccione--</option>
+        <!-- aquí se podrían incluir opciones dinámicamente desde Django -->
+    </select><br><br>
+
+    <label for="nombre_inspector">Nombre del inspector:</label>
+    <input type="text" id="nombre_inspector" name="nombre_inspector" required><br><br>
+
+    <label for="cargo">Cargo:</label>
+    <input type="text" id="cargo" name="cargo" required><br><br>
+
+    <label for="encargado">Encargado:</label>
+    <select id="encargado" name="encargado">
+        <option value="">--Seleccione--</option>
+        <!-- aquí se podrían incluir opciones dinámicamente desde Django -->
+    </select><br><br>
+
+    <label for="horario">Horario:</label>
+    <input type="text" id="horario" name="horario" required><br><br>
+
+    <label for="fotografia">Fotografia:</label>
+    <input type="file" id="fotografia" name="fotografia"><br><br>
+
+    <label for="vigencia">Vigencia:</label>
+    <input type="date" id="vigencia" name="vigencia"><br><br>
+
+    <label for="materia_giro">Materia y giro:</label>
+    <textarea id="materia_giro" name="materia_giro" rows="4" cols="50" required></textarea><br><br>
+
+    <label for="fundamento_juridico">Fundamento juridico:</label>
+    <textarea id="fundamento_juridico" name="fundamento_juridico" rows="4" cols="50" required></textarea><br><br>
+
+    <label for="domicilio">Domicilio:</label>
+    <input type="text" id="domicilio" name="domicilio" required><br><br>
+
+    <label for="telefono">Telefono:</label>
+    <input type="text" id="telefono" name="telefono" required><br><br>
+
+    <label for="mail">Correo electrónico:</label>
+    <input type="email" id="mail" name="mail" required><br><br>
+
+    <input type="submit" value="Guardar">
+</form>
+
+</body>
+</html>
