@@ -26,3 +26,43 @@ class Autoridad(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+class Hora_entrada_salida(models.Model):
+    hora_inicio = models.TimeField()
+    hora_fin = models.TimeField()
+
+    class Meta:
+        verbose_name = _("hora entrada y salida")
+        verbose_name_plural = _("horas de entrada y salida")
+
+    def __str__(self):
+        return f'{self.hora_inicio.strftime("%I:%M %p")} - {self.hora_fin.strftime("%I:%M %p")}'
+
+
+class Horario(models.Model):
+    lunes = models.ForeignKey(Hora_entrada_salida, on_delete=models.CASCADE, related_name='lunes_set', null=True, blank=True)
+    martes = models.ForeignKey(Hora_entrada_salida, on_delete=models.CASCADE, related_name='martes_set', null=True, blank=True)
+    miercoles = models.ForeignKey(Hora_entrada_salida, on_delete=models.CASCADE, related_name='miercoles_set', null=True,
+                                  blank=True)
+    jueves = models.ForeignKey(Hora_entrada_salida, on_delete=models.CASCADE, related_name='jueves_set', null=True, blank=True)
+    viernes = models.ForeignKey(Hora_entrada_salida, on_delete=models.CASCADE, related_name='viernes_set', null=True, blank=True)
+    sabado = models.ForeignKey(Hora_entrada_salida, on_delete=models.CASCADE, related_name='sabado_set', null=True, blank=True)
+    domingo = models.ForeignKey(Hora_entrada_salida, on_delete=models.CASCADE, related_name='domingo_set', null=True, blank=True)
+
+    def __str__(self):
+        horarios = {}
+        for dia in ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo']:
+            horario_dia = getattr(self, dia)
+            if horario_dia:
+                horario_str = horario_dia.hora_inicio.strftime('%I:%M %p') + "-" + horario_dia.hora_fin.strftime(
+                    '%I:%M %p')
+                if horario_str not in horarios:
+                    horarios[horario_str] = []
+                horarios[horario_str].append(dia.capitalize())
+
+        dias_str = []
+        for horario, dias in horarios.items():
+            dias_str.append(', '.join(dias) + ' ' + horario)
+
+        return ' '.join(dias_str)

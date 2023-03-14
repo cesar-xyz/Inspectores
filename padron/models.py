@@ -2,7 +2,7 @@
 from django.db import models
 from django.utils.translation import gettext as _
 
-from administrativo.models import Unidad_Administrativa, Autoridad
+from administrativo.models import Unidad_Administrativa, Autoridad, Horario
 from .helpers import set_fotografia_path
 
 
@@ -13,7 +13,7 @@ class Padron(models.Model):
     nombre_inspector = models.CharField("nombre del inspector", max_length=128, unique=True, null=False)
     cargo = models.CharField("cargo", max_length=128, unique=True, null=False)
     encargado = models.ForeignKey(Autoridad, blank=False, on_delete=models.CASCADE)
-    horario = models.CharField("horario", max_length=128, unique=True, null=False)
+    horario = models.ForeignKey(Horario, blank=False, on_delete=models.CASCADE)
     fotografia = models.ImageField(null=True, blank=True, upload_to=set_fotografia_path)
     vigencia = models.DateField(null=True, blank=True)
     materia_giro = models.TextField("materia y giro", max_length=255, unique=True, null=False)
